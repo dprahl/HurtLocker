@@ -30,8 +30,8 @@ public class JerkSONParserTest {
         int expected = 28;
 
         //then;
-        ArrayList<String> seperated = JerkSONParser.separateLines(input);
-        int actual = seperated.size();
+        ArrayList<String> separated = JerkSONParser.separateLines(input);
+        int actual = separated.size();
 
         //when;
         Assert.assertEquals(expected, actual);

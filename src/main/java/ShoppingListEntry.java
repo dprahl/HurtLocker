@@ -4,9 +4,9 @@
 public class ShoppingListEntry {
     private String name;
     private int count;
-    private double firstPrice;
+    private String firstPrice;
     private int firstPriceCount;
-    private double secondPrice;
+    private String secondPrice;
     private int secondPriceCount;
 
     public ShoppingListEntry(String name){
@@ -25,7 +25,7 @@ public class ShoppingListEntry {
         this.count++;
     }
 
-    public double getFirstPrice() {
+    public String getFirstPrice() {
         return firstPrice;
     }
 
@@ -33,7 +33,7 @@ public class ShoppingListEntry {
         return firstPriceCount;
     }
 
-    public double getSecondPrice() {
+    public String getSecondPrice() {
         return secondPrice;
     }
 
@@ -41,13 +41,17 @@ public class ShoppingListEntry {
         return secondPriceCount;
     }
 
-    public void addPrice(double price){
-        if(this.firstPrice == 0){
-            this.firstPrice = price;
-            this.firstPriceCount++;
-        }else if(this.secondPrice == 0){
-            this.secondPrice = price;
-            this.secondPriceCount++;
+    public void addPrice(String price){
+        if(firstPrice == null){
+            firstPrice = price;
+        }else if(secondPrice == null) {
+            secondPrice = price;
+        }
+
+        if(firstPrice == price) {
+            firstPriceCount++;
+        }else if(secondPrice == price){
+            secondPriceCount++;
         }
     }
 }
