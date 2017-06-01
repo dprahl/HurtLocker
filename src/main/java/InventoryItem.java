@@ -7,13 +7,6 @@ public class InventoryItem {
     private String type;
     private String expiration;
 
-    public InventoryItem(){
-      /* leave all fields null */
-        //this.name = "undefined";
-        //this.price = "undefined";
-        //this.type = "undefined";
-        //this.expiration = "undefined";
-    }
 
     public InventoryItem(String name, String price, String type, String expiration){
         this.name = name;

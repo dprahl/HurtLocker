@@ -17,17 +17,17 @@ public class ShoppingListHandler {
 
     public ShoppingListHandler(){
         this.items = new ArrayList<InventoryItem>(30);
-        Milk = new ShoppingListEntry("Milk");
-        Bread = new ShoppingListEntry("Bread");
+        Milk = new ShoppingListEntry("   Milk");
+        Bread = new ShoppingListEntry("  Bread");
         Cookies = new ShoppingListEntry("Cookies");
-        Apples = new ShoppingListEntry("Apples");
+        Apples = new ShoppingListEntry(" Apples");
         errorCount = 0;
     }
 
-    public void populateItems(String rawInput){
-        String[] seperated = JerkSONParser.separateInput(rawInput);
+    private void populateItems(String rawInput){
+        String[] separated = JerkSONParser.separateInput(rawInput);
         String name, price, type, expiration;
-        for (String line : seperated) {
+        for (String line : separated) {
             try {
                 name = JerkSONParser.getValue(line, JerkSONParser.NAME);
                 price = JerkSONParser.getValue(line, JerkSONParser.PRICE);
@@ -42,7 +42,7 @@ public class ShoppingListHandler {
         }// end of for loop
     }
 
-    public void populateEntries(){
+    private void populateEntries(){
         ShoppingListEntry entry;
         String name;
         String price;
@@ -56,10 +56,10 @@ public class ShoppingListHandler {
     }
 
     public ShoppingListEntry getEntry(String name){
-        Pattern milkPattern = Pattern.compile("M.*");
-        Pattern breadPattern = Pattern.compile("B.*");
-        Pattern cookiesPattern = Pattern.compile("C.*");
-        Pattern applesPattern = Pattern.compile("a.*");
+        Pattern milkPattern = Pattern.compile("\\s*M.*");
+        Pattern breadPattern = Pattern.compile("\\s*B.*");
+        Pattern cookiesPattern = Pattern.compile("\\s*C.*");
+        Pattern applesPattern = Pattern.compile("\\s*a.*");
         Matcher milkMatcher = milkPattern.matcher(name);
         Matcher breadMatcher = breadPattern.matcher(name);
         Matcher cookiesMatcher = cookiesPattern.matcher(name);
@@ -77,18 +77,29 @@ public class ShoppingListHandler {
         }
     }
 
-    public String entryToString(ShoppingListEntry entry){
-        return "name:  "+ entry.getName() +" seen:  "+ entry.getItemCount() +" times";
+    private String entryToString(ShoppingListEntry entry){
+        String entryString = "name: "+ entry.getName() +"        seen: "+ entry.getItemCount() +" times\n";
+        entryString += "=============        =============\n";
+        entryString += "Price:   "+ entry.getFirstPrice() +"        seen: "+ entry.getFirstPriceCount() +" times\n";
+        entryString += "-------------        -------------\n";
+        if(entry.getSecondPriceCount() > 0){
+            entryString += "Price:   " + entry.getSecondPrice() + "        seen: " + entry.getSecondPriceCount() + " times\n";
+        }
+        return entryString;
     }
 
-    public String allEntriesToString(){
-        String combined = "";
-        combined += entryToString(Milk) + "\n";
-        combined += entryToString(Bread) + "\n";
-        combined += entryToString(Cookies) + "\n";
-        combined += entryToString(Apples) + "\n";
-        combined += "errors:  "+ errorCount +" seen";
-        return combined;
+    private String allEntriesToString(){
+        String milk = entryToString(Milk) + "\n";
+        String bread = entryToString(Bread) + "\n";
+        String cookies = entryToString(Cookies) + "\n";
+        String apples = entryToString(Apples) + "\n";
+        String errors = "Errors               seen: "+ errorCount +" times\n";
+        return milk + bread + cookies + apples + errors;
     }
 
+    public String createShoppingList(String rawInput){
+        populateItems(rawInput);
+        populateEntries();
+        return allEntriesToString();
+    }
 }

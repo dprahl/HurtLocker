@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by danielprahl on 5/31/17.
  */
@@ -26,7 +29,7 @@ public class ShoppingListEntry {
     }
 
     public String getFirstPrice() {
-        return firstPrice;
+        return firstPrice.toString();
     }
 
     public int getFirstPriceCount() {
@@ -34,7 +37,7 @@ public class ShoppingListEntry {
     }
 
     public String getSecondPrice() {
-        return secondPrice;
+        return secondPrice.toString();
     }
 
     public int getSecondPriceCount() {
@@ -42,16 +45,20 @@ public class ShoppingListEntry {
     }
 
     public void addPrice(String price){
-        if(firstPrice == null){
+        if(this.firstPrice != null){
+            Pattern pattern = Pattern.compile(price);
+            Matcher matcher = pattern.matcher(firstPrice);
+            if(matcher.matches()) {
+                firstPriceCount++;
+            }else if(secondPrice == null){
+                secondPrice = price;
+                secondPriceCount++;
+            }else{
+                secondPriceCount++;
+            }
+        }else{
             firstPrice = price;
-        }else if(secondPrice == null) {
-            secondPrice = price;
-        }
-
-        if(firstPrice == price) {
             firstPriceCount++;
-        }else if(secondPrice == price){
-            secondPriceCount++;
         }
     }
 }

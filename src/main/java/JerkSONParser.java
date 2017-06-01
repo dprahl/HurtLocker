@@ -8,13 +8,13 @@ import java.util.regex.PatternSyntaxException;
  */
 public class JerkSONParser {
 
-// name       =  4 letters:possibly(some number of letters);
-// price      =  5 letters:possibly(1 digit.2 digits);
-// type       =  type:Food[:^%*!@;]
-// expiration =  expiration:1 digit/2 digits/2016
-// delimiter  =  ##
-//  regex to match individual entry entirely
-//    \D{4}:\w*;\D{5}:(\d{1}\.\d{2})?;type:Food[:^%*!@;]\D{10}:\d{1}\/\d{2}\/2016##
+    // name       =  4 letters:possibly(some number of letters);
+    // price      =  5 letters:possibly(1 digit.2 digits);
+    // type       =  type:Food[:^%*!@;]
+    // expiration =  expiration:1 digit/2 digits/2016
+    // delimiter  =  ##
+    //  regex to match individual entry (entire line)
+    //    \D{4}:\w*;\D{5}:(\d{1}\.\d{2})?;type:Food[:^%*!@;]\D{10}:\d{1}\/\d{2}\/2016##
 
     // pattern constants
     public static final String NAME = "\\D{4}:\\w*";

@@ -11,7 +11,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
-        System.out.println(output);
+        ShoppingListHandler listHandler = new ShoppingListHandler();
+        System.out.println(listHandler.createShoppingList(output));
 
     }
 }
