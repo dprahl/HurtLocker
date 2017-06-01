@@ -78,12 +78,12 @@ public class ShoppingListHandler {
     }
 
     private String entryToString(ShoppingListEntry entry){
-        String entryString = "name: "+ entry.getName() +"        seen: "+ entry.getItemCount() +" times\n";
-        entryString += "=============        =============\n";
-        entryString += "Price:   "+ entry.getFirstPrice() +"        seen: "+ entry.getFirstPriceCount() +" times\n";
-        entryString += "-------------        -------------\n";
+        String entryString = "name: "+ entry.getName() +"\t\tseen: "+ entry.getItemCount() +" times\n";
+        entryString += "=============\t\t=============\n";
+        entryString += "Price:   "+ entry.getFirstPrice() +"\t\tseen: "+ entry.getFirstPriceCount() +" times\n";
+        entryString += "-------------\t\t-------------\n";
         if(entry.getSecondPriceCount() > 0){
-            entryString += "Price:   " + entry.getSecondPrice() + "        seen: " + entry.getSecondPriceCount() + " times\n";
+            entryString += "Price:   " + entry.getSecondPrice() + "\t\tseen: " + entry.getSecondPriceCount() + " times\n";
         }
         return entryString;
     }
@@ -93,7 +93,7 @@ public class ShoppingListHandler {
         String bread = entryToString(Bread) + "\n";
         String cookies = entryToString(Cookies) + "\n";
         String apples = entryToString(Apples) + "\n";
-        String errors = "Errors               seen: "+ errorCount +" times\n";
+        String errors = "Errors   \t\t\tseen: "+ errorCount +" times\n";
         return milk + bread + cookies + apples + errors;
     }
 

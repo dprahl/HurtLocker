@@ -19,7 +19,7 @@ public class ShoppingListHandlerTest {
     @Test
     public void getEntryTestMilk(){
         //given;
-        String expected = "Milk";
+        String expected = "   Milk";
 
         //when;
         String actual = handler.getEntry("MILK").getName();
@@ -31,7 +31,7 @@ public class ShoppingListHandlerTest {
     @Test
     public void getEntryTestBread(){
         //given;
-        String expected = "Bread";
+        String expected = "  Bread";
 
         //when;
         String actual = handler.getEntry("BREAD").getName();
@@ -55,7 +55,7 @@ public class ShoppingListHandlerTest {
     @Test
     public void getEntryTestApples(){
         //given;
-        String expected = "Apples";
+        String expected = " Apples";
 
         //when;
         String actual = handler.getEntry("aPPLES").getName();
@@ -80,7 +80,7 @@ public class ShoppingListHandlerTest {
     @Test
     public void createShoppingListTest(){
         //given;
-        int expected = 669;
+        int expected = 552;
 
         //when;
         String output = handler.createShoppingList(input);
