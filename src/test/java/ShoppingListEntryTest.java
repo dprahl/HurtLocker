@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -6,10 +7,17 @@ import org.junit.Test;
  */
 public class ShoppingListEntryTest {
 
+    ShoppingListHandler handler;
+
+    @Before
+    public void setup(){
+        handler = new ShoppingListHandler();
+    }
+
     @Test
     public void addPriceFirstTest(){
         //given;
-        ShoppingListEntry entry = new ShoppingListEntry("Test");
+        ShoppingListHandler.ShoppingListEntry entry = handler.new ShoppingListEntry("Test");
         int expected = 2;
 
         //when;
@@ -25,7 +33,7 @@ public class ShoppingListEntryTest {
     @Test
     public void addPriceSecondTest(){
         //given;
-        ShoppingListEntry entry = new ShoppingListEntry("Test");
+        ShoppingListHandler.ShoppingListEntry entry = handler.new ShoppingListEntry("Test");
         String expected = "0.99";
 
         //when;
